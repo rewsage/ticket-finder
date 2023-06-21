@@ -1,0 +1,17 @@
+@use "@/styles/colors" as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 84px;
+    padding: 0 2rem;
+
+    color: white;
+    background-color: $primary-color;
+}
+
+.title {
+    font-size: 2rem;
+}

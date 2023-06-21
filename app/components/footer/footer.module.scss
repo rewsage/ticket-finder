@@ -1,0 +1,18 @@
+@use "@/styles/colors" as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 86px;
+    padding: 0 2rem;
+
+    color: white;
+    background-color: $primary-color;
+}
+
+.link {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
