@@ -1,0 +1,36 @@
+@use "@/styles/colors";
+
+.button {
+    background-color: colors.$secondary-main;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+    color: white;
+
+    &.normal {
+        min-width: 51px;
+        min-height: 40px;
+        padding: 10px 16px;
+
+        border-radius: 8px;
+    }
+
+    &.small {
+        min-width: 20px;
+        min-height: 20px;
+        padding: 0;
+
+        border-radius: 4px;
+    }
+
+    &.outlined {
+        background: none;
+        color: colors.$secondary-dark;
+        border: 1px solid colors.$secondary-dark;
+    }
+
+    &.disabled {
+        background: colors.$secondary-light;
+    }
+}

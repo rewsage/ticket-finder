@@ -1,8 +1,8 @@
-import "@/styles/global.scss";
-import { roboto } from "@/fonts";
+import "@/app/styles/global.scss";
+import { roboto } from "@/assets/fonts";
 import { Metadata } from "next";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
 
 export const metadata: Metadata = {
     title: "TicketFinder",
