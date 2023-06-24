@@ -1,0 +1,45 @@
+@use "@/styles/common";
+
+.container {
+    @extend %wrapper;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: auto;
+}
+
+.crossIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 24px;
+    cursor: pointer;
+}
+
+.genre {
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.poster {
+    min-width: 100px;
+    min-height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+
+    margin-right: 24px;
+}

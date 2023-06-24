@@ -8,7 +8,9 @@ function Header() {
             <Link href="/" className={styles.title}>
                 Билетопоиск
             </Link>
-            <BasketIcon fill="white" />
+            <Link href="/basket">
+                <BasketIcon fill="white" />
+            </Link>
         </header>
     );
 }

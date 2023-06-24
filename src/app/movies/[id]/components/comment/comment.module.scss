@@ -1,0 +1,31 @@
+@use "@/styles/common";
+
+.container {
+    @extend %wrapper;
+    margin-bottom: 24px;
+}
+
+.wrapper {
+    width: 100px;
+    height: 100px;
+    margin-right: 32px;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.username {
+    margin-bottom: 16px;
+}
+
+.headline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating {
+    font-size: 20px;
+}

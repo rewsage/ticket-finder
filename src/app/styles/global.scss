@@ -19,18 +19,17 @@ a {
     text-decoration: none;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-
-    background-color: colors.$background-main;
+h1 {
+    font-size: 32px;
+    font-weight: 700;
 }
 
-.content {
-    flex-grow: 1;
+h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
 
-    margin: 24px 0;
-    padding-left: 32px;
-    padding-right: 32px;
+p {
+    font-size: 16px;
+    font-weight: 400;
 }

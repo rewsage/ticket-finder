@@ -1,35 +1,31 @@
-import styles from "@/app/styles/page.module.scss";
-import { MovieCard } from "./components/movie-card";
-import { Genre } from "./types";
-
-type Movie = {
-    title: string;
-    posterUrl: string;
-    releaseYear: number;
-    description: string;
-    genre: Genre;
-    id: string;
-    rating: number;
-    director: string;
-    reviewIds: string[];
-};
+import styles from "./styles/page.module.scss";
+import { MovieCard } from "@/components/movie-card";
+import { Movie } from "@/types";
+import { Sidebar } from "./components/sidebar";
 
 export default async function Home() {
-    const movies: Movie[] = await getMovies();
-
-    const movieCards = movies.map((movie) => {
+    const movies = await getMovies();
+    const movieCards = (movies ?? []).map((movie) => {
         return <MovieCard key={movie.id} {...movie} />;
     });
 
     return (
         <div className={styles.container}>
-            <div className={styles.sidebar}>Smth about us</div>
+            <Sidebar />
             <div className={styles.cards}>{movieCards}</div>
         </div>
     );
 }
 
 async function getMovies() {
-    const res = await fetch(`http://localhost:3001/api/movies`);
-    return res.json();
+    let result = null;
+
+    try {
+        const res = await fetch(`http://localhost:3001/api/movies`);
+        result = (await res.json()) as Movie[];
+    } catch (err) {
+        console.log(err);
+    }
+
+    return result;
 }

@@ -1,7 +1,12 @@
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import styles from "./button.module.scss";
 import classNames from "classnames";
 
-interface ButtonProps {
+interface ButtonProps
+    extends DetailedHTMLProps<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+    > {
     children: string;
     variant?: "regular" | "outlined";
     size?: "normal" | "small";

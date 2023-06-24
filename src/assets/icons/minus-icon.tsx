@@ -2,15 +2,14 @@ import { SVGProps } from "react";
 const MinusIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={20}
-        height={20}
-        fill="#FF5500"
+        width={32}
+        height={32}
+        fill="white"
         {...props}
     >
-        <rect width={20} height={20} fill="#F50" rx={4} />
         <path
-            fill="#fff"
-            d="M14.5 10a.375.375 0 0 1-.375.375h-8.25a.375.375 0 1 1 0-.75h8.25A.375.375 0 0 1 14.5 10Z"
+            fill="#333"
+            d="M28 16a1 1 0 0 1-1 1H5a1 1 0 0 1 0-2h22a1 1 0 0 1 1 1Z"
         />
     </svg>
 );

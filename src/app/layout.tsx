@@ -1,11 +1,12 @@
-import "@/app/styles/global.scss";
+import "./styles/global.scss";
+import styles from "./styles/layout.module.scss";
 import { roboto } from "@/assets/fonts";
-import { Metadata } from "next";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "TicketFinder",
+    title: "Билетопоиск",
 };
 
 export default function RootLayout({
@@ -16,9 +17,9 @@ export default function RootLayout({
     return (
         <html lang="ru" className={roboto.className}>
             <body>
-                <div className="container">
+                <div className={styles.container}>
                     <Header />
-                    <div className="content">{children}</div>
+                    <div className={styles.content}>{children}</div>
                     <Footer />
                 </div>
             </body>

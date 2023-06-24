@@ -1,0 +1,57 @@
+@use "@/styles/colors";
+.container {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 360px;
+    max-height: calc(100vh - 218px);
+    min-height: 400px;
+    height: 100%;
+
+    margin-right: 24px;
+    margin-bottom: 24px;
+    padding: 24px;
+
+    background-color: white;
+    border-radius: 8px;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+}
+
+%field {
+    border-radius: 8px;
+    border: 1px solid colors.$border-main;
+    background: white;
+    padding: 10px 16px;
+    outline-color: colors.$secondary-main;
+    font-size: 14px;
+
+    margin-bottom: 16px;
+}
+
+.textfield {
+    @extend %field;
+}
+
+.select {
+    @extend %field;
+    appearance: none;
+}

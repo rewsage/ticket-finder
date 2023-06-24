@@ -1,0 +1,44 @@
+@use "@/styles/colors";
+@use "@/styles/common";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.main {
+    @extend %wrapper;
+    margin-bottom: 24px;
+}
+
+.poster {
+    min-width: 400px;
+    min-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 32px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.description {
+    .text {
+        font-size: 16px;
+    }
+}

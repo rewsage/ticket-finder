@@ -1,0 +1,11 @@
+@use "@/styles/common";
+
+.container {
+    @extend %wrapper;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.text {
+    margin-top: 16px;
+}
