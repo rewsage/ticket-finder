@@ -1,0 +1,29 @@
+@use "@/styles/common";
+
+.container {
+    @extend %wrapper;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.answer {
+    margin-top: 16px;
+}
+
+.arrowIcon {
+    &.opened {
+        transform: rotate(180deg);
+    }
+}

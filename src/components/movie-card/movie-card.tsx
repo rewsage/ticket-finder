@@ -11,7 +11,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import { remove } from "@/redux/features/basket";
 import { useState } from "react";
 import { Modal } from "@/components/modal";
-import { createPortal } from "react-dom";
 
 interface MovieCard extends Movie {
     isRemovable?: boolean;
@@ -55,7 +54,10 @@ function MovieCard({ title, posterUrl, genre, id, isRemovable }: MovieCard) {
                 <Modal
                     title="Удаление билета"
                     message="Вы уверены, что хотите удалить билет?"
-                    onAccept={() => dispatch(remove(id))}
+                    onAccept={() => {
+                        setIsModalActive(false);
+                        dispatch(remove(id));
+                    }}
                     onDeny={() => setIsModalActive(false)}
                 />
             )}
