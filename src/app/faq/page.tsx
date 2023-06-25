@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     title: "FAQ",
 };
 
-export default async function FaqPage() {
+export default function FaqPage() {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Вопросы-ответы</h1>

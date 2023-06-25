@@ -12,20 +12,29 @@ import { Movie } from "@/types";
 
 interface TicketCounterProps {
     movieId: Movie["id"];
+    triggerModal: () => void;
 }
 
-function TicketCounter({ movieId }: TicketCounterProps) {
+function TicketCounter({ movieId, triggerModal }: TicketCounterProps) {
     const dispatch = useAppDispatch();
     const tickets = useAppSelector((state) =>
         selectTicketsAmount(state, movieId)
     );
+
+    const handleMinusClick = () => {
+        if (tickets === 1) {
+            triggerModal();
+        } else {
+            dispatch(decrement(movieId));
+        }
+    };
 
     return (
         <div className={styles.container}>
             <Button
                 size="small"
                 status={tickets === 0 ? "disabled" : "active"}
-                onClick={() => dispatch(decrement(movieId))}
+                onClick={handleMinusClick}
             >
                 -
             </Button>

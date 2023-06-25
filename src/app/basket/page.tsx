@@ -5,6 +5,9 @@ import styles from "./page.module.scss";
 import { MovieCard } from "@/components/movie-card";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetMoviesQuery } from "@/redux/services/moviesApi";
+import { createPortal } from "react-dom";
+import { Modal } from "../../components/modal";
+import { useState } from "react";
 
 export default function BasketPage() {
     const { data } = useGetMoviesQuery();
@@ -17,7 +20,7 @@ export default function BasketPage() {
     );
 
     const movieCards = basketMovies.map((movie) => {
-        return <MovieCard key={movie.id} {...movie} isRemovable={true} />;
+        return <MovieCard key={movie.id} {...movie} isRemovable />;
     });
 
     return (

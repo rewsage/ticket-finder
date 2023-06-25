@@ -1,8 +1,19 @@
 import { sfProText } from "@/assets/fonts";
 import styles from "./sidebar.module.scss";
 import classNames from "classnames";
+import { Movie } from "@/types";
+import { ChangeEventHandler } from "react";
 
-function Sidebar() {
+interface SidebarProps {
+    filterByName: (name: string) => void;
+}
+
+function Sidebar({ filterByName }: SidebarProps) {
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const value = e.target.value;
+        filterByName(value);
+    };
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Фильтры поиска</h2>
@@ -11,13 +22,14 @@ function Sidebar() {
                 <input
                     className={styles.textfield}
                     placeholder="Введите название"
+                    onChange={(e) => handleChange}
                 ></input>
 
-                <select className={styles.select} placeholder="Выберете жанр">
+                {/* <select className={styles.select} placeholder="Выберете жанр">
                     <option selected>smth</option>
                     <option>smth2</option>
                     <option>smth3</option>
-                </select>
+                </select> */}
             </div>
         </div>
     );

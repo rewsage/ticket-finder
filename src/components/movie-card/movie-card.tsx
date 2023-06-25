@@ -9,6 +9,9 @@ import { TicketCounter } from "@/components/ticket-counter";
 import { CrossIcon } from "@/assets/icons";
 import { useAppDispatch } from "@/redux/hooks";
 import { remove } from "@/redux/features/basket";
+import { useState } from "react";
+import { Modal } from "@/components/modal";
+import { createPortal } from "react-dom";
 
 interface MovieCard extends Movie {
     isRemovable?: boolean;
@@ -16,6 +19,8 @@ interface MovieCard extends Movie {
 
 function MovieCard({ title, posterUrl, genre, id, isRemovable }: MovieCard) {
     const dispatch = useAppDispatch();
+    const [isModalActive, setIsModalActive] = useState(false);
+
     const dict = getDictionary("ru");
 
     return (
@@ -33,16 +38,27 @@ function MovieCard({ title, posterUrl, genre, id, isRemovable }: MovieCard) {
                     <Link href={`/movies/${id}`} className={styles.title}>
                         {title}
                     </Link>
-                    <TicketCounter movieId={id} />
+                    <TicketCounter
+                        movieId={id}
+                        triggerModal={() => setIsModalActive(true)}
+                    />
                     {isRemovable && (
                         <CrossIcon
                             className={styles.crossIcon}
-                            onClick={() => dispatch(remove(id))}
+                            onClick={() => setIsModalActive(true)}
                         />
                     )}
                 </div>
                 <p className={styles.genre}>{capitalize(dict.genres[genre])}</p>
             </div>
+            {isModalActive && (
+                <Modal
+                    title="Удаление билета"
+                    message="Вы уверены, что хотите удалить билет?"
+                    onAccept={() => dispatch(remove(id))}
+                    onDeny={() => setIsModalActive(false)}
+                />
+            )}
         </div>
     );
 }
