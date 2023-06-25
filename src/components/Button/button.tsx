@@ -7,7 +7,7 @@ interface ButtonProps
         ButtonHTMLAttributes<HTMLButtonElement>,
         HTMLButtonElement
     > {
-    children: string;
+    children: React.ReactNode;
     variant?: "regular" | "outlined";
     size?: "normal" | "small";
     status?: "active" | "disabled";

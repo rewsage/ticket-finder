@@ -1,4 +1,4 @@
-@use "@/styles/colors" as *;
+@use "@/styles/colors";
 
 .header {
     position: sticky;
@@ -13,10 +13,28 @@
     padding: 0 32px;
 
     color: white;
-    background-color: $primary-main;
+    background-color: colors.$primary-main;
 }
 
 .title {
     font-size: 2rem;
     font-weight: 700;
+}
+
+.basket {
+    display: flex;
+    align-items: center;
+}
+
+.tickets {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 8px;
+    background-color: colors.$secondary-main;
+    margin-right: 8px;
 }

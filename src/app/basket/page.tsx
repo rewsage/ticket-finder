@@ -1,15 +1,22 @@
+"use client";
+
+import { selectBasket, selectTicketsTotal } from "@/redux/features/basket";
 import styles from "./page.module.scss";
 import { MovieCard } from "@/components/movie-card";
-import { Movie } from "@/types";
-import { Metadata } from "next";
+import { useAppSelector } from "@/redux/hooks";
+import { useGetMoviesQuery } from "@/redux/services/moviesApi";
 
-export const metadata: Metadata = {
-    title: "Корзина",
-};
+export default function BasketPage() {
+    const { data } = useGetMoviesQuery();
+    const basket = useAppSelector((state) => selectBasket(state));
+    const total = useAppSelector((state) => selectTicketsTotal(state));
 
-export default async function BasketPage() {
-    const movies = await getMovies();
-    const movieCards = (movies?.slice(2, 5) ?? []).map((movie) => {
+    const basketMoviesId = Object.keys(basket);
+    const basketMovies = (data ?? []).filter((movie) =>
+        basketMoviesId.includes(movie.id)
+    );
+
+    const movieCards = basketMovies.map((movie) => {
         return <MovieCard key={movie.id} {...movie} isRemovable={true} />;
     });
 
@@ -18,21 +25,8 @@ export default async function BasketPage() {
             <div className={styles.card}>{movieCards}</div>
             <div className={styles.total}>
                 <h2>Итого билетов:</h2>
-                <h2>7</h2>
+                <h2>{total}</h2>
             </div>
         </div>
     );
-}
-
-async function getMovies() {
-    let result = null;
-
-    try {
-        const res = await fetch(`http://localhost:3001/api/movies`);
-        result = (await res.json()) as Movie[];
-    } catch (err) {
-        console.log(err);
-    }
-
-    return result;
 }

@@ -1,4 +1,3 @@
-import { BasketIcon } from "@/assets/icons";
 import styles from "./footer.module.scss";
 import Link from "next/link";
 

@@ -45,7 +45,7 @@ async function MoviePage({ params }: { params: { id: string } }) {
                 <div className={styles.info}>
                     <div className={styles.headline}>
                         <h1>{movie.title}</h1>
-                        <TicketCounter />
+                        <TicketCounter movieId={movie.id} />
                     </div>
 
                     <Topic
