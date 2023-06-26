@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { ChangeEventHandler, Dispatch, SetStateAction } from "react";
 import { FilterParams } from "@/app/page";
 import { Dropdown } from "@/app/_components/dropdown";
-import { Cinema, Genre } from "@/types";
+import { Cinema, Movie } from "@/types";
 import { useGetCinemasQuery } from "@/redux/services/movies-api";
 
 interface SidebarProps {
@@ -22,7 +22,7 @@ const cinemaOptions: CinemaOptions = {
     reset: "Не выбран",
 };
 
-const genreOptions: Record<Genre | "reset", string> = {
+const genreOptions: Record<Movie["genre"] | "reset", string> = {
     reset: "Не выбран",
     action: "Боевик",
     comedy: "Комедия",
@@ -40,7 +40,7 @@ function Sidebar({ updateFilterParams }: SidebarProps) {
         }));
     };
 
-    const handleGenreFiltration = (option: Genre | "reset") => {
+    const handleGenreFiltration = (option: Movie["genre"] | "reset") => {
         updateFilterParams((prev) => ({
             ...prev,
             genre: option === "reset" ? null : option,
@@ -74,7 +74,7 @@ function Sidebar({ updateFilterParams }: SidebarProps) {
                 <Dropdown
                     title="Выберете жанр"
                     options={genreOptions}
-                    onSelect={handleGenreFiltration as (option: string) => void}
+                    onSelect={handleGenreFiltration}
                 />
 
                 <p className={styles.label}>Кинотеатр</p>

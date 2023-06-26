@@ -5,12 +5,12 @@ import { Sidebar } from "./_components/sidebar";
 import { useGetCinemaMoviesQuery } from "@/redux/services/movies-api";
 import { useState } from "react";
 import { MovieList } from "@/components/movie-list";
-import { Cinema, Genre } from "@/types";
+import { Cinema, Movie } from "@/types";
 import { filterMovies } from "./_utils";
 
 export type FilterParams = {
     title: string;
-    genre: Genre | null;
+    genre: Movie["genre"] | null;
     cinema: Cinema["id"] | null;
 };
 

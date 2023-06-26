@@ -1,13 +1,9 @@
-import translation from "@/assets/translations/ru.json";
-
-export type Genre = keyof typeof translation.genres;
-
 export interface Movie {
     title: string;
     posterUrl: string;
     releaseYear: number;
     description: string;
-    genre: Genre;
+    genre: string;
     id: string;
     rating: number;
     director: string;
@@ -20,8 +16,6 @@ export interface Review {
     text: string;
     rating: number;
 }
-
-// export type Cinema = "Синема сад" | "4 с половиной звезды" | "Дружба";
 
 export interface Cinema {
     id: string;
