@@ -12,11 +12,17 @@ import { remove } from "@/redux/features/basket";
 import { useState } from "react";
 import { Modal } from "@/components/modal";
 
-interface MovieCard extends Movie {
+export interface MovieCardProps extends Movie {
     isRemovable?: boolean;
 }
 
-function MovieCard({ title, posterUrl, genre, id, isRemovable }: MovieCard) {
+function MovieCard({
+    title,
+    posterUrl,
+    genre,
+    id,
+    isRemovable,
+}: MovieCardProps) {
     const dispatch = useAppDispatch();
     const [isModalActive, setIsModalActive] = useState(false);
 

@@ -2,13 +2,11 @@
 
 import styles from "./_styles/page.module.scss";
 import { Sidebar } from "./_components/sidebar";
-import {
-    useGetCinemaMoviesQuery,
-    useGetMoviesQuery,
-} from "@/redux/services/movies-api";
-import { useEffect, useState } from "react";
-import { MovieList } from "./_components/movie-list";
-import { Cinema, Genre, Movie } from "@/types";
+import { useGetCinemaMoviesQuery } from "@/redux/services/movies-api";
+import { useState } from "react";
+import { MovieList } from "@/components/movie-list";
+import { Cinema, Genre } from "@/types";
+import { filterMovies } from "./_utils";
 
 export type FilterParams = {
     title: string;
@@ -23,49 +21,16 @@ const initialParams = {
 };
 
 export default function Home() {
-    const { data: allMovies } = useGetMoviesQuery();
     const [filterParams, setFilterParams] =
         useState<FilterParams>(initialParams);
+    const { data: cinemaMovies } = useGetCinemaMoviesQuery(filterParams.cinema);
 
-    const cinemaId = filterParams.cinema ?? "";
-    const { data: cinemaMovies } = useGetCinemaMoviesQuery(cinemaId, {
-        skip: !filterParams.cinema,
-    });
-
-    const filterMovies = (data: Movie[]) => {
-        let movieList = data;
-        if (!filterParams.cinema) movieList;
-
-        const filteredMovies = data.filter((movie) => {
-            if (
-                filterParams.title !== "" &&
-                !movie.title.toLowerCase().startsWith(filterParams.title)
-            ) {
-                console.log(movie.title, filterParams.title);
-                return false;
-            }
-
-            if (
-                filterParams.genre !== null &&
-                filterParams.genre !== movie.genre
-            ) {
-                return false;
-            }
-
-            return true;
-        });
-
-        return filteredMovies;
-    };
-
-    let moviesForFiltering = filterParams.cinema ? cinemaMovies : allMovies;
-
-    const movies = moviesForFiltering ? filterMovies(moviesForFiltering) : [];
+    const filteredMovies = filterMovies(cinemaMovies ?? [], filterParams);
 
     return (
         <div className={styles.container}>
             <Sidebar updateFilterParams={setFilterParams} />
-            <MovieList movies={movies} />
+            <MovieList movies={filteredMovies} />
         </div>
     );
 }

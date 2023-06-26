@@ -14,8 +14,10 @@ export const moviesApi = createApi({
         getMovieReviews: builder.query<Review[], Movie["id"]>({
             query: (id) => `reviews?movieId=${id}`,
         }),
-        getCinemaMovies: builder.query<Movie[], Cinema["id"]>({
-            query: (id) => `movies?cinemaId=${id}`,
+        getCinemaMovies: builder.query<Movie[], Cinema["id"] | null>({
+            query: (id) => {
+                return id ? `movies?cinemaId=${id}` : "movies";
+            },
         }),
         getCinemas: builder.query<Cinema[], void>({
             query: () => `cinemas`,

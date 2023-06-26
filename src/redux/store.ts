@@ -1,7 +1,6 @@
 import { moviesApi } from "@/redux/services/movies-api";
 import { configureStore } from "@reduxjs/toolkit";
 import { basketReducer } from "./features/basket";
-import { filtersReducer } from "./features/filters";
 
 export const store = configureStore({
     reducer: {

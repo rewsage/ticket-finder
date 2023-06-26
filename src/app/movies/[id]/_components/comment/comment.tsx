@@ -1,6 +1,6 @@
 import styles from "./comment.module.scss";
 import { Review } from "@/types";
-import { Avatar } from "../avatar/avatar";
+import { Avatar } from "../avatar";
 
 function Comment({ name, text, rating }: Review) {
     return (

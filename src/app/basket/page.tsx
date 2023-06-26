@@ -2,9 +2,9 @@
 
 import { selectBasket, selectTicketsTotal } from "@/redux/features/basket";
 import styles from "./page.module.scss";
-import { MovieCard } from "@/components/movie-card";
 import { useAppSelector } from "@/redux/hooks";
 import { useGetMoviesQuery } from "@/redux/services/movies-api";
+import { MovieList } from "../../components/movie-list";
 
 export default function BasketPage() {
     const { data } = useGetMoviesQuery();
@@ -16,13 +16,9 @@ export default function BasketPage() {
         basketMoviesId.includes(movie.id)
     );
 
-    const movieCards = basketMovies.map((movie) => {
-        return <MovieCard key={movie.id} {...movie} isRemovable />;
-    });
-
     return (
         <div className={styles.container}>
-            <div className={styles.cards}>{movieCards}</div>
+            <MovieList movies={basketMovies} isRemovable />
             <div className={styles.total}>
                 <h2>Итого билетов:</h2>
                 <h2>{total}</h2>

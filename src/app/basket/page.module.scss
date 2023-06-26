@@ -8,13 +8,10 @@
     width: 100%;
 }
 
-.cards > * {
-    margin-bottom: 16px;
-}
-
 .total {
     @extend %wrapper;
 
     align-items: center;
     justify-content: space-between;
+    margin-top: 16px;
 }
