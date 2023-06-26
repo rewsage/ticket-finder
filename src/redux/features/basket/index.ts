@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { Movie } from "@/types";
 import { RootState } from "@/redux/store";
 
-type BasketState = Record<Movie["id"], { tickets: number }>;
+type BasketState = Record<Movie["id"], number>;
 
 const initialState: BasketState = {};
 
@@ -16,20 +16,20 @@ export const basket = createSlice({
         },
         increment: (state, action: PayloadAction<Movie["id"]>) => {
             const movieId = action.payload;
-            const movie = state[movieId];
+            const tickets = state[movieId];
 
-            if (movie && movie.tickets < 30) {
-                movie.tickets++;
-            } else if (!movie) {
-                state[movieId] = { tickets: 1 };
+            if (tickets && tickets < 30) {
+                state[movieId]++;
+            } else if (!tickets) {
+                state[movieId] = 1;
             }
         },
         decrement: (state, action: PayloadAction<Movie["id"]>) => {
             const movieId = action.payload;
-            const movie = state[movieId];
+            const tickets = state[movieId];
 
-            if (movie) {
-                movie.tickets === 1 ? delete state[movieId] : movie.tickets--;
+            if (tickets) {
+                tickets === 1 ? delete state[movieId] : state[movieId]--;
             }
         },
     },
@@ -40,14 +40,13 @@ export const basketReducer = basket.reducer;
 
 export const selectBasket = (state: RootState): BasketState => state.basket;
 export const selectTicketsAmount = (state: RootState, id: Movie["id"]) => {
-    const movie = state.basket[id];
-    return movie?.tickets ?? 0;
+    const tickets = state.basket[id];
+    return tickets ?? 0;
 };
 export const selectTicketsTotal = (state: RootState) => {
     const basket = selectBasket(state);
-    const movies = Object.values(basket);
 
-    return movies.reduce((sum, movie) => {
-        return sum + movie.tickets;
+    return Object.values(basket).reduce((sum, tickets) => {
+        return sum + tickets;
     }, 0);
 };

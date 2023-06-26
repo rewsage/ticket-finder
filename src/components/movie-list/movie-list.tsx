@@ -7,7 +7,7 @@ function MovieList({
     isRemovable,
 }: {
     movies: Movie[];
-    isRemovable: boolean;
+    isRemovable?: boolean;
 }) {
     const movieCards = movies.map((movie) => {
         return (
