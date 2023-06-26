@@ -5,7 +5,7 @@ import styles from "./sidebar.module.scss";
 import classNames from "classnames";
 import { ChangeEventHandler, Dispatch, SetStateAction } from "react";
 import { FilterParams } from "@/app/page";
-import { Dropdown } from "@/app/components/dropdown";
+import { Dropdown } from "@/app/_components/dropdown";
 import { Cinema, Genre } from "@/types";
 import { useGetCinemasQuery } from "@/redux/services/movies-api";
 

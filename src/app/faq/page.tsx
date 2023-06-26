@@ -1,6 +1,6 @@
 import styles from "./page.module.scss";
-import { Question } from "./question";
-import { FAQ } from "./assets";
+import { Question } from "./_components/question";
+import { FAQ } from "./_assets";
 
 export default function FaqPage() {
     const questions = FAQ.map(({ question, answer }, index) => {

@@ -1,32 +1,34 @@
+"use client";
+
 import { Movie, Review } from "@/types";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { capitalize, getDictionary } from "@/utils";
-import { Topic } from "./components/topic";
-import { Comment } from "./components/comment";
+import { Topic } from "./_components/topic";
+import { Comment } from "./_components/comment";
 import { TicketCounter } from "@/components/ticket-counter";
-import { Metadata } from "next";
+import {
+    useGetMovieQuery,
+    useGetMovieReviewsQuery,
+} from "@/redux/services/movies-api";
+import { useState } from "react";
+import { Modal } from "@/components/modal";
+import { remove } from "@/redux/features/basket";
+import { useAppDispatch } from "@/redux/hooks";
 
-export async function generateMetadata({
-    params,
-}: {
-    params: { id: string };
-}): Promise<Metadata> {
-    const id = params.id;
-    const data = await getMovie(id);
+function MoviePage({ params }: { params: { id: string } }) {
+    const { data: movie } = useGetMovieQuery(params.id);
+    const { data: reviews } = useGetMovieReviewsQuery(movie?.id ?? "", {
+        skip: !movie?.id,
+    });
+    const [isModalActive, setIsModalActive] = useState(false);
+    const dispatch = useAppDispatch();
 
-    return {
-        title: data?.title ? data.title : "TicketFinder",
-    };
-}
+    if (!movie) {
+        return null;
+    }
 
-async function MoviePage({ params }: { params: { id: string } }) {
-    const movie = await getMovie(params.id);
-    const dict = await getDictionary("ru");
-
-    if (!movie) return <p>No data</p>;
-
-    const reviews = await getMovieReviews(movie.id);
+    const dict = getDictionary("ru");
     const comments = (reviews ?? []).map((review) => {
         return <Comment key={review.id} {...review} />;
     });
@@ -45,7 +47,10 @@ async function MoviePage({ params }: { params: { id: string } }) {
                 <div className={styles.info}>
                     <div className={styles.headline}>
                         <h1>{movie.title}</h1>
-                        <TicketCounter movieId={movie.id} />
+                        <TicketCounter
+                            movieId={movie.id}
+                            triggerModal={() => setIsModalActive(true)}
+                        />
                     </div>
 
                     <Topic
@@ -64,34 +69,20 @@ async function MoviePage({ params }: { params: { id: string } }) {
             </main>
 
             {comments}
+
+            {isModalActive && (
+                <Modal
+                    title="Удаление билета"
+                    message="Вы уверены, что хотите удалить билет?"
+                    onAccept={() => {
+                        setIsModalActive(false);
+                        dispatch(remove(movie.id));
+                    }}
+                    onDeny={() => setIsModalActive(false)}
+                />
+            )}
         </div>
     );
-}
-
-async function getMovie(id: string) {
-    let result = null;
-    try {
-        const res = await fetch(
-            `http://localhost:3001/api/movie?movieId=${id}`
-        );
-        result = (await res.json()) as Movie;
-    } catch (err) {
-        console.log(err);
-    }
-    return result;
-}
-
-async function getMovieReviews(id: string) {
-    let result = null;
-    try {
-        const res = await fetch(
-            `http://localhost:3001/api/reviews?movieId=${id}`
-        );
-        result = (await res.json()) as Review[];
-    } catch (err) {
-        console.log(err);
-    }
-    return result;
 }
 
 export default MoviePage;

@@ -1,8 +1,8 @@
-import "./styles/global.scss";
-import styles from "./styles/layout.module.scss";
+import "./_styles/global.scss";
+import styles from "./_styles/layout.module.scss";
 import { roboto } from "@/assets/fonts";
-import { Header } from "./components/header";
-import { Footer } from "./components/footer";
+import { Header } from "./_components/header";
+import { Footer } from "./_components/footer";
 import { Metadata } from "next";
 import { StoreProvider } from "@/redux/store-provider";
 

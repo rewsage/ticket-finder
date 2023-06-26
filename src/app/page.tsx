@@ -1,13 +1,13 @@
 "use client";
 
-import styles from "./styles/page.module.scss";
-import { Sidebar } from "./components/sidebar";
+import styles from "./_styles/page.module.scss";
+import { Sidebar } from "./_components/sidebar";
 import {
     useGetCinemaMoviesQuery,
     useGetMoviesQuery,
 } from "@/redux/services/movies-api";
 import { useEffect, useState } from "react";
-import { MovieList } from "./components/movie-list";
+import { MovieList } from "./_components/movie-list";
 import { Cinema, Genre, Movie } from "@/types";
 
 export type FilterParams = {

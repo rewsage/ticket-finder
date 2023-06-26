@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Movie, Cinema } from "@/types";
+import { Movie, Cinema, Review } from "@/types";
 
 export const moviesApi = createApi({
     reducerPath: "moviesApi",
@@ -10,6 +10,9 @@ export const moviesApi = createApi({
         }),
         getMovie: builder.query<Movie, Movie["id"]>({
             query: (id) => `movie?movieId=${id}`,
+        }),
+        getMovieReviews: builder.query<Review[], Movie["id"]>({
+            query: (id) => `reviews?movieId=${id}`,
         }),
         getCinemaMovies: builder.query<Movie[], Cinema["id"]>({
             query: (id) => `movies?cinemaId=${id}`,
@@ -25,4 +28,5 @@ export const {
     useGetMovieQuery,
     useGetCinemasQuery,
     useGetCinemaMoviesQuery,
+    useGetMovieReviewsQuery,
 } = moviesApi;

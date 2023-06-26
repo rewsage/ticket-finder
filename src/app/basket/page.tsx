@@ -22,7 +22,7 @@ export default function BasketPage() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.card}>{movieCards}</div>
+            <div className={styles.cards}>{movieCards}</div>
             <div className={styles.total}>
                 <h2>Итого билетов:</h2>
                 <h2>{total}</h2>
