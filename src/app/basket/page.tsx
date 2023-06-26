@@ -4,10 +4,7 @@ import { selectBasket, selectTicketsTotal } from "@/redux/features/basket";
 import styles from "./page.module.scss";
 import { MovieCard } from "@/components/movie-card";
 import { useAppSelector } from "@/redux/hooks";
-import { useGetMoviesQuery } from "@/redux/services/moviesApi";
-import { createPortal } from "react-dom";
-import { Modal } from "../../components/modal";
-import { useState } from "react";
+import { useGetMoviesQuery } from "@/redux/services/movies-api";
 
 export default function BasketPage() {
     const { data } = useGetMoviesQuery();

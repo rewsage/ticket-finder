@@ -1,0 +1,75 @@
+@use "@/styles/colors";
+@use "@/styles/common";
+
+.container {
+    position: relative;
+    user-select: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 16px;
+    border: 1px solid colors.$border-main;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &.opened {
+        border-color: colors.$secondary-main;
+
+        .title {
+            color: inherit;
+        }
+
+        .arrowIcon {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.title {
+    @extend %button-reset;
+    cursor: pointer;
+    font-size: 14px;
+    color: colors.$text-disabled;
+
+    &.active {
+        color: inherit;
+    }
+}
+
+.arrowIcon {
+    width: 20px;
+    height: 20px;
+
+    fill: colors.$text-disabled;
+}
+
+.select {
+    position: absolute;
+    transform: translateY(4px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 8px;
+    box-shadow: 0px 10px 22px -4px rgba(27, 31, 35, 0.12);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.option {
+    @extend %button-reset;
+    display: flex;
+
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
+
+    cursor: pointer;
+}

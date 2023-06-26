@@ -1,5 +1,6 @@
 "use client";
 
+import { MinusIcon, PlusIcon } from "@/assets/icons";
 import styles from "./ticket-counter.module.scss";
 import { Button } from "@/components/button";
 import {
@@ -36,7 +37,7 @@ function TicketCounter({ movieId, triggerModal }: TicketCounterProps) {
                 status={tickets === 0 ? "disabled" : "active"}
                 onClick={handleMinusClick}
             >
-                -
+                <MinusIcon className={styles.icon} />
             </Button>
             <p className={styles.counter}>{tickets}</p>
             <Button
@@ -44,7 +45,7 @@ function TicketCounter({ movieId, triggerModal }: TicketCounterProps) {
                 status={tickets === 30 ? "disabled" : "active"}
                 onClick={() => dispatch(increment(movieId))}
             >
-                +
+                <PlusIcon className={styles.icon} />
             </Button>
         </div>
     );

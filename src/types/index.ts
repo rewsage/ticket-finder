@@ -20,3 +20,11 @@ export interface Review {
     text: string;
     rating: number;
 }
+
+// export type Cinema = "Синема сад" | "4 с половиной звезды" | "Дружба";
+
+export interface Cinema {
+    id: string;
+    name: string;
+    movieIds: Array<Movie["id"]>;
+}

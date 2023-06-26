@@ -17,7 +17,7 @@ function Question({ question, answer }: QuestionProps) {
         <div className={styles.container}>
             <div
                 className={styles.question}
-                onClick={() => setIsOpened((isOpened) => !isOpened)}
+                onClick={() => setIsOpened((prev) => !prev)}
             >
                 <h2>{question}</h2>
                 <ArrowIcon

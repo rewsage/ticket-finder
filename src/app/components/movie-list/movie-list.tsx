@@ -2,8 +2,8 @@ import { MovieCard } from "@/components/movie-card";
 import { Movie } from "@/types";
 import styles from "./movie-list.module.scss";
 
-function MovieList({ data }: { data: Movie[] }) {
-    const movieCards = data.map((movie) => {
+function MovieList({ movies }: { movies: Movie[] }) {
+    const movieCards = movies.map((movie) => {
         return <MovieCard key={movie.id} {...movie} />;
     });
 
