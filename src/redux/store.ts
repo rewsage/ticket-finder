@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { basketReducer } from "./features/basket";
 import { listenerMiddleware } from "./middlewares";
 
-const sessionBasketState = JSON.parse(sessionStorage.getItem("basket") ?? "{}");
+const sessionBasketState = typeof window !== "undefined" ? JSON.parse(sessionStorage.getItem("basket") ?? "{}") : {};
 
 export const store = configureStore({
     reducer: {

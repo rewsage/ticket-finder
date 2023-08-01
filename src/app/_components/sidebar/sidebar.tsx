@@ -74,7 +74,7 @@ function Sidebar({ updateFilterParams }: SidebarProps) {
                 <Dropdown
                     title="Выберете жанр"
                     options={genreOptions}
-                    onSelect={handleGenreFiltration}
+                    onSelect={handleGenreFiltration as (optionKey: string) => void}
                 />
 
                 <p className={styles.label}>Кинотеатр</p>

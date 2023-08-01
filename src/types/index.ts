@@ -1,9 +1,11 @@
+import { Genre } from "@/utils";
+
 export interface Movie {
     title: string;
     posterUrl: string;
     releaseYear: number;
     description: string;
-    genre: string;
+    genre: Genre;
     id: string;
     rating: number;
     director: string;

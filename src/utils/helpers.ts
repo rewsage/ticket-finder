@@ -12,6 +12,8 @@ const dictionaries = {
 type Locale = keyof typeof dictionaries;
 export const getDictionary = (locale: Locale) => dictionaries[locale];
 
+export type Genre = keyof ReturnType<typeof getDictionary>["genres"];
+
 export const filterByTitle = (movies: Movie[], value: string) => {
     return movies.filter((movie) => {
         return movie.title.toLocaleLowerCase().startsWith(value);

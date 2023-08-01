@@ -29,6 +29,8 @@ function MoviePage({ params }: { params: { id: string } }) {
     }
 
     const dict = getDictionary("ru");
+    const genre = dict.genres[movie.genre];
+
     const comments = (reviews ?? []).map((review) => {
         return <Comment key={review.id} {...review} />;
     });
@@ -55,10 +57,10 @@ function MoviePage({ params }: { params: { id: string } }) {
 
                     <Topic
                         title="Жанр"
-                        text={capitalize(dict.genres[movie.genre])}
+                        text={capitalize(genre)}
                     />
                     <Topic title="Год выпуска" text={movie.releaseYear + ""} />
-                    <Topic title="Рейтнг" text={movie.rating + ""} />
+                    <Topic title="Рейтинг" text={movie.rating + ""} />
                     <Topic title="Режисер" text={movie.director} />
 
                     <div className={styles.description}>
